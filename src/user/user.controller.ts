@@ -1,14 +1,13 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   // Query,
 } from '@nestjs/common';
-import { UserService } from './user.service';
 import {
   ApiForbiddenResponse,
   ApiNotFoundResponse,
@@ -16,11 +15,13 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+
 // import { BaseUserResDto } from './dto/res/base-user.res.dto';
 import { CreateUserReqDto } from './dto/req/create-user.req.dto';
 import { UpdateUserReqDto } from './dto/req/update-user.req.dto';
 import { PrivateUserResDto } from './dto/res/private-user.res.dto';
 import { PublicUserResDto } from './dto/res/public-user.res.dto';
+import { UserService } from './user.service';
 
 @ApiTags('Users')
 @Controller('users')
@@ -35,7 +36,8 @@ export class UserController {
   public async create(
     @Body() dto: CreateUserReqDto,
   ): Promise<PrivateUserResDto> {
-    return this.userService.create(dto);
+    console.log(dto);
+    return await this.userService.create(dto);
   }
 
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -44,7 +46,7 @@ export class UserController {
   // @ApiOkResponse({ type: PublicUserResDto })
   @Get(':id')
   public async findOne(@Param('id') id: string): Promise<PublicUserResDto> {
-    return this.userService.findOne(id);
+    return await this.userService.findOne(id);
   }
 
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -57,7 +59,7 @@ export class UserController {
     // @Query() query: CreateUserReqDto,
     @Body() updateUserDto: UpdateUserReqDto,
   ): Promise<any> {
-    return this.userService.update(id, updateUserDto);
+    return await this.userService.update(id, updateUserDto);
   }
 
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -66,6 +68,6 @@ export class UserController {
   // @ApiOkResponse({ type: BaseUserResDto })
   @Delete(':id')
   public async remove(@Param('id') id: string): Promise<any> {
-    return this.userService.remove(id);
+    return await this.userService.remove(id);
   }
 }
