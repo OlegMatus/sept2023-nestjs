@@ -1,18 +1,16 @@
 export type Config = {
   app: AppConfig;
-  database: DatabaseConfig;
+  database:    DatabaseConfig;
   redis: RedisConfig;
 };
 
 export type AppConfig = {
-  port: number;
+  port:      number;
   host: string;
 };
 
 export type DatabaseConfig = {
-  host: string;
-
-
+  host:      string;
 
   port: number;
   user: string;
@@ -20,10 +18,8 @@ export type DatabaseConfig = {
   dbName: string;
 };
 
-
-
 export type RedisConfig = {
-  port:      number;
+  port: number;
   host: string;
   password: string;
 };
