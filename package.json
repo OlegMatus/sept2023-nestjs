@@ -10,7 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:docker:db": "docker compose -f docker-compose.db.yaml up --build",
-    "start:local": "nest start --watch -e 'node --env-file ./environments/local.env'",
+    "start:local": "nest start --watch -e \"node --env-file ./environments/local.env\"",
     "start:debug": "nest start --debug --watch",
     "start:dev": "node dist/main --env-file ./environments/dev.env'",
     "start:prod": "node dist/main --env-file ./environments/prod.env'",
