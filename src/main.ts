@@ -1,13 +1,21 @@
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist/config.service';
-import { NestFactory } from '@nestjs/core';
+import {
+  // BaseExceptionFilter,
+  // HttpAdapterHost,
+  NestFactory,
+} from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+// import { nodeProfilingIntegration } from '@sentry/profiling-node';
 import { AppModule } from './app.module';
 import { AppConfig } from './configs/configs.type';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // const { httpAdapter } = app.get(HttpAdapterHost);
+  // Sentry.setupNestErrorHandler(app, new BaseExceptionFilter(httpAdapter));
 
   const configService = app.get(ConfigService);
   const appConfig = configService.get<AppConfig>('app');

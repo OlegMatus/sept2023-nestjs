@@ -16,4 +16,9 @@ export default () => ({
     port: parseInt(process.env.REDIS_PORT) || 6379,
     host: process.env.REDIS_HOST,
   },
+  sentry: {
+    dsn: process.env.SENTRY_DSN,
+    debug: process.env.SENTRY_DEBUG === 'true',
+    env: process.env.SENTRY_ENVIRONMENT,
+  },
 });
