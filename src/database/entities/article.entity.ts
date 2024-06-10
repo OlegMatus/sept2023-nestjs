@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { CommentEntity } from './comment.entity';
 import { TableNameEnum } from './enums/table-name.enum';
 import { LikeEntity } from './like.entity';
 import { BaseModel } from './models/base.model';
@@ -30,6 +31,9 @@ export class ArticleEntity extends BaseModel {
 
   @OneToMany(() => LikeEntity, (entity) => entity.article)
   likes?: LikeEntity[];
+
+  @OneToMany(() => CommentEntity, (entity) => entity.article)
+  comments: CommentEntity[];
 
   @Column()
   user_id: string;
