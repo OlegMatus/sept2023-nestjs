@@ -15,10 +15,17 @@ export default () => ({
   redis: {
     port: parseInt(process.env.REDIS_PORT) || 6379,
     host: process.env.REDIS_HOST,
+    password: process.env.REDIS_PASSWORD,
   },
   sentry: {
     dsn: process.env.SENTRY_DSN,
     debug: process.env.SENTRY_DEBUG === 'true',
     env: process.env.SENTRY_ENVIRONMENT,
+  },
+  jwt: {
+    accessSecret: process.env.JWT_ACCESS_SECRET,
+    accessExpires_In: parseInt(process.env.JWT_ACCESS_EXPIRES_IN),
+    refreshSecret: process.env.JWT_REFRESH_SECRET,
+    refreshExpires_In: parseInt(process.env.JWT_REFRESH_EXPIRES_IN),
   },
 });

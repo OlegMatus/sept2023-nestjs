@@ -20,14 +20,16 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     let status: number;
     let messages: string | string[];
     if (exception instanceof HttpException) {
-      status = exception.getStatus();
       messages = (exception as HttpException).message;
+      status = exception.getStatus();
     } else {
       status = 500;
       messages = 'Internal server error';
     }
     this.logger.error(exception);
+
     messages = Array.isArray(messages) ? messages : [messages];
+
     response.status(status).json({
       statusCode: status,
       messages,

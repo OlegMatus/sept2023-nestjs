@@ -6,7 +6,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import * as path from 'path';
 import * as process from 'process';
 
-import { Config, DatabaseConfig } from '../configs/configs.type';
+import { Config, DatabaseConfig } from '../../configs/configs.type';
 
 @Injectable()
 export class PostgresConnectService implements TypeOrmOptionsFactory {

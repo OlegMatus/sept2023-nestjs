@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
-  Post,
   // Query,
 } from '@nestjs/common';
 import {
@@ -17,11 +17,9 @@ import {
 } from '@nestjs/swagger';
 
 // import { BaseUserResDto } from './dto/res/base-user.res.dto';
-import { CreateUserReqDto } from './dto/req/create-user.req.dto';
 import { UpdateUserReqDto } from './dto/req/update-user.req.dto';
-import { PrivateUserResDto } from './dto/res/private-user.res.dto';
-import { PublicUserResDto } from './dto/res/public-user.res.dto';
-import { UserService } from './user.service';
+import { UserResDto } from './dto/res/user.res.dto';
+import { UserService } from './services/user.service';
 
 @ApiTags('Users')
 @Controller('users')
@@ -31,21 +29,11 @@ export class UserController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiNotFoundResponse({ description: 'Not found' })
-  // @ApiOkResponse({ type: PrivateUserResDto })
-  @Post()
-  public async create(
-    @Body() dto: CreateUserReqDto,
-  ): Promise<PrivateUserResDto> {
-    console.log(dto);
-    return await this.userService.create(dto);
-  }
-
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiNotFoundResponse({ description: 'Not found' })
   // @ApiOkResponse({ type: PublicUserResDto })
   @Get(':id')
-  public async findOne(@Param('id') id: string): Promise<PublicUserResDto> {
+  public async findOne(
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<UserResDto> {
     return await this.userService.findOne(id);
   }
 
@@ -55,8 +43,8 @@ export class UserController {
   // @ApiOkResponse({ type: BaseUserResDto })
   @Patch(':id')
   public async update(
-    @Param('id') id: string,
-    // @Query() query: CreateUserReqDto,
+    @Param('id', ParseUUIDPipe) id: string,
+    // @Query() query: BaseUserReqDto,
     @Body() updateUserDto: UpdateUserReqDto,
   ): Promise<any> {
     return await this.userService.update(id, updateUserDto);
@@ -67,7 +55,7 @@ export class UserController {
   @ApiNotFoundResponse({ description: 'Not found' })
   // @ApiOkResponse({ type: BaseUserResDto })
   @Delete(':id')
-  public async remove(@Param('id') id: string): Promise<any> {
+  public async remove(@Param('id', ParseUUIDPipe) id: string): Promise<any> {
     return await this.userService.remove(id);
   }
 }

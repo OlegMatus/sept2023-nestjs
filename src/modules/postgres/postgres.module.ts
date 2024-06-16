@@ -13,7 +13,7 @@ import { PostgresConnectService } from './postgres-connect.service';
     }),
     /*V2 Config*/
     // TypeOrmModule.forRootAsync({
-    //   useClass: PostgresConnectService,
+    //   useClass: RedisService,
     //   useFactory: (configService: ConfigService<Config>) => {
     //     const databaseConfig = configService.get<DatabaseConfig>('database');
     //     return {

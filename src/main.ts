@@ -44,6 +44,7 @@ async function bootstrap() {
     new ValidationPipe({
       transform: true,
       whitelist: true,
+      forbidNonWhitelisted: true,
     }),
   );
   await app.listen(appConfig.port, appConfig.host, () => {

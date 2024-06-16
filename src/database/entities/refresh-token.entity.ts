@@ -1,12 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 import { TableNameEnum } from './enums/table-name.enum';
 import { BaseModel } from './models/base.model';
@@ -18,7 +10,7 @@ export class RefreshTokenEntity extends BaseModel {
   refreshToken: string;
 
   @Column('text')
-  deviceId: number;
+  deviceId: string;
 
   @Column()
   user_id: string;
