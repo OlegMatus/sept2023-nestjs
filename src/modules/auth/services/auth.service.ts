@@ -6,6 +6,7 @@ import { UserRepository } from '../../repository/services/user.repository';
 import { UserService } from '../../user/services/user.service';
 import { SignInReqDto } from '../dto/req/sign-in.req.dto';
 import { SignUpReqDto } from '../dto/req/sign-up.req.dto';
+import { AuthResDto } from '../dto/res/auth.res.dto';
 import { AuthMapper } from './auth.mapper';
 import { AuthCacheService } from './auth-cache.service';
 import { TokenService } from './token.service';
@@ -19,7 +20,7 @@ export class AuthService {
     private readonly userRepository: UserRepository,
     private readonly refreshTokenRepository: RefreshTokenRepository,
   ) {}
-  public async signUp(dto: SignUpReqDto): Promise<any> {
+  public async signUp(dto: SignUpReqDto): Promise<AuthResDto> {
     await this.userService.isEmailUniqueOrThrow(dto.email);
     const password = await bcrypt.hash(dto.password, 10);
 

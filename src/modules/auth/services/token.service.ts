@@ -27,7 +27,7 @@ export class TokenService {
 
     return { accessToken, refreshToken };
   }
-  public async verifyToken(token: string): Promise<any> {
+  public async verifyToken(token: string): Promise<IJwtPayload> {
     return await this.jwtService.verifyAsync(token);
   }
 }

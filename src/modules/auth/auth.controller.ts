@@ -3,6 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 import { SignInReqDto } from './dto/req/sign-in.req.dto';
 import { SignUpReqDto } from './dto/req/sign-up.req.dto';
+import { AuthResDto } from './dto/res/auth.res.dto';
 import { AuthService } from './services/auth.service';
 
 @ApiTags('Auth')
@@ -11,7 +12,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('sign-up')
-  public async signUp(@Body() dto: SignUpReqDto): Promise<any> {
+  public async signUp(@Body() dto: SignUpReqDto): Promise<AuthResDto> {
     return await this.authService.signUp(dto);
   }
 
