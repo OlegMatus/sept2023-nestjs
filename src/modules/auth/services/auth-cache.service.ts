@@ -20,6 +20,7 @@ export class AuthCacheService {
     deviceId: string,
   ): Promise<void> {
     const key = this.getKey(userId, deviceId);
+
     await this.redisService.deleteByKey(key);
     await this.redisService.addOneToSet(key, token);
     await this.redisService.expire(key, this.jwtConfig.accessExpires_In);
@@ -32,6 +33,10 @@ export class AuthCacheService {
     const key = this.getKey(userId, deviceId);
     const set = await this.redisService.sMembers(key);
     return set.includes(token);
+  }
+  public async deleteToken(userId: string, deviceId: string): Promise<void> {
+    const key = this.getKey(userId, deviceId);
+    await this.redisService.deleteByKey(key);
   }
   private getKey(userId: string, deviceId: string): string {
     return `ACCESS_TOKEN:${userId}:${deviceId}`;

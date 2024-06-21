@@ -1,11 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 import { ArticleEntity } from './article.entity';
 import { CommentEntity } from './comment.entity';
@@ -23,7 +16,7 @@ export class UserEntity extends BaseModel {
   @Column('text', { unique: true })
   email: string;
 
-  @Column('text')
+  @Column('text', { select: false }) //v takomu vypadku parol bilwe nikoly ne bude povertatys z Bazy danyh//
   password: string;
 
   @Column('text', { nullable: true })
