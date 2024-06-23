@@ -1,20 +1,16 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 
 import { CommentEntity } from './comment.entity';
 import { TableNameEnum } from './enums/table-name.enum';
 import { LikeEntity } from './like.entity';
 import { BaseModel } from './models/base.model';
-import { RefreshTokenEntity } from './refresh-token.entity';
 import { TagEntity } from './tag.entity';
 import { UserEntity } from './user.entity';
 

@@ -12,8 +12,8 @@ import { AuthCacheService } from './services/auth-cache.service';
 import { TokenService } from './services/token.service';
 
 @Module({
-  // imports: [JwtModule, forwardRef(() => UserModule), RedisModule]
-  // .../forward ref dopomahae unykaty bezkine4noho cyklu importiv UserModule-AuthModule wob wykorystaty @UseGuard()
+  // imports: [JwtModule, forwardRef(() => ArticleModule), RedisModule]
+  // .../forward ref dopomahae unykaty bezkine4noho cyklu importiv ArticleModule-AuthModule wob wykorystaty @UseGuard()
   imports: [JwtModule, UserModule, RedisModule],
   controllers: [AuthController],
   providers: [
