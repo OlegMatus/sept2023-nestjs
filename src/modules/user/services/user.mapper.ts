@@ -13,6 +13,7 @@ export class UserMapper {
       email: user.email,
       bio: user.bio || null,
       image: user.image || null,
+      isFollowed: user.followings ? user.followings.length > 0 : false,
     };
   }
 }

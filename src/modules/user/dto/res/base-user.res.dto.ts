@@ -30,4 +30,9 @@ export class BaseUserResDto {
     description: 'The avatar of the User',
   })
   public readonly image?: string;
+
+  @ApiProperty({
+    description: 'Tha date the User was created',
+  })
+  public readonly isFollowed?: boolean;
 }
